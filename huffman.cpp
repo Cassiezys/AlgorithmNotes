@@ -1,5 +1,7 @@
+#define _CRT_SECURE_NO_WARNINGS
 #include<iostream>
 #include<algorithm>
+#include<queue>
 using namespace std;
 const int maxn = 1001;
 
@@ -77,7 +79,7 @@ void insert(int x)
 	fruit[++n] = x;
 	UpAdjust(1, n);
 }
-void w()
+void huffman()
 {
 	int temp,sum = 0;
 	while(n!=1)
@@ -88,10 +90,33 @@ void w()
 	}
 	cout << sum<<endl;
 }
+priority_queue<long long, vector<long long>, greater<long long > > q;
+void que(int n)
+{
+	long long temp,x,y,ans=0;
+	for (int i = 0; i < n; i++)
+	{
+		scanf("%lld", &temp);
+		q.push(temp);
+	}
+	while (q.size()>1)
+	{
+		x = q.top();
+		q.pop();
+		y = q.top();
+		q.pop();
+		q.push(x + y);
+		ans += x + y;
+	}
+	printf("%lld", ans);
+}
 int main()
 {
 	cin >> n;
-	create(n);
-	createHeap();
-	w();
+	//create(n);
+	//createHeap();
+	//sortway()
+	//huffman();
+
+	que(n);
 }
